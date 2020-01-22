@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { createOrder } from '../../actions/marketActions';
 import './Market.css';
 
 import {connect} from 'react-redux';
@@ -36,22 +37,18 @@ export class Market extends Component {
     return (
       <div className="market">
         <h1>Новые заказы в магазине</h1>
-        <form className="new-orders__create-form">
+        <div className="new-orders__create-form">
           <div>
-            <button>Создать заказ</button>
+            <button onClick={this.createOrderHandler}>Создать заказ</button>
             <button>Отправить заказ на ферму</button>
           </div>
-          <div className="order-list">
-
-          </div>
-        </form>
+          <div className="order-list" />
+        </div>
       </div>
     );
   }
+
+  createOrderHandler = () => this.props.createOrder(getNewOrder());
 }
 
-const mapStateToProps = state => ({});
-
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Market);
+export default connect(null, { createOrder })(Market);
