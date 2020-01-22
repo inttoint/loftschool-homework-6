@@ -33,7 +33,20 @@ const getNewOrder = () => {
 
 export class Market extends Component {
   render() {
-    return <div />;
+    return (
+      <div className="market">
+        <h1>Новые заказы в магазине</h1>
+        <form className="new-orders__create-form">
+          <div>
+            <button>Создать заказ</button>
+            <button>Отправить заказ на ферму</button>
+          </div>
+          <div className="order-list">
+
+          </div>
+        </form>
+      </div>
+    );
   }
 }
 

@@ -1,3 +1,8 @@
-export const market = (state = {}, action) => {
+
+const initialState = {
+  orders: []
+};
+
+export const market = (state = initialState, action) => {
   return state;
 };
