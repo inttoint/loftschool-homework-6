@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { createOrder } from '../../actions/marketActions';
+import { createOrder, moveOrderToFarm } from '../../actions/marketActions';
 import { getOrdersSelector } from "../../reducers/market";
 import {connect} from 'react-redux';
 import Order from "../Order";
@@ -44,12 +44,16 @@ export class Market extends Component {
         <div className="new-orders__create-form">
           <div>
             <button onClick={this.createOrderHandler}>Создать заказ</button>
-            <button disabled>Отправить заказ на ферму</button>
+            <button
+              onClick={() => this.moveOrderToFarm(orders[orders.length - 1])}
+              disabled={orders.length === 0}>
+              Отправить заказ на ферму
+            </button>
           </div>
           <div className="order-list">
             {
               orders.map(({id, name, price, createdAt}) => (
-                <Order key={id} name={name} price={price} createdAt={createdAt} />
+                <Order key={id} name={name} price={price} createdAt={createdAt}/>
               ))
             }
           </div>
@@ -59,8 +63,10 @@ export class Market extends Component {
   }
 
   createOrderHandler = () => this.props.createOrder(getNewOrder());
+  moveOrderToFarm = (order) => this.props.moveOrderToFarm(order);
+
 }
 
 export default connect(state => ({
   orders: getOrdersSelector(state)
-}), { createOrder })(Market);
+}), { createOrder, moveOrderToFarm })(Market);

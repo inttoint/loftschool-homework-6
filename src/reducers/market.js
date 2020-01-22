@@ -1,4 +1,5 @@
-import {CREATE_ORDER} from "../actions/marketTypes";
+import { CREATE_ORDER, MOVE_ORDER_TO_FARM } from "../actions/marketTypes";
+import { sortOrderFn } from '../reducers/helpers';
 
 export const moduleName = 'market';
 
@@ -15,10 +16,15 @@ export default (state = initialState, action) => {
         ...state,
         orders: [...state.orders, payload.order]
       };
+    case MOVE_ORDER_TO_FARM:
+      return {
+        ...state,
+        orders: state.orders.filter(order => order.id !== payload.order.id)
+      };
 
     default:
       return state;
   }
 };
 
-export const getOrdersSelector = state => state[moduleName].orders;
+export const getOrdersSelector = state => state[moduleName].orders.sort(sortOrderFn);
