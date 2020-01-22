@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import { createOrder } from '../../actions/marketActions';
-import './Market.css';
+import { getOrdersSelector } from "../../reducers/market";
 
+import './Market.css';
 import {connect} from 'react-redux';
+import Order from "../Order/Order";
 let id = 0;
 const getId = () => {
   id += 1;
@@ -34,6 +36,8 @@ const getNewOrder = () => {
 
 export class Market extends Component {
   render() {
+    const { orders } = this.props;
+
     return (
       <div className="market">
         <h1>Новые заказы в магазине</h1>
@@ -42,7 +46,13 @@ export class Market extends Component {
             <button onClick={this.createOrderHandler}>Создать заказ</button>
             <button>Отправить заказ на ферму</button>
           </div>
-          <div className="order-list" />
+          <div className="order-list">
+            {
+              orders.map(({id, name, price, createdAt}) => (
+                <Order key={id} name={name} price={price} createdAt={createdAt} />
+              ))
+            }
+          </div>
         </div>
       </div>
     );
@@ -51,4 +61,6 @@ export class Market extends Component {
   createOrderHandler = () => this.props.createOrder(getNewOrder());
 }
 
-export default connect(null, { createOrder })(Market);
+export default connect(state => ({
+  orders: getOrdersSelector(state)
+}), { createOrder })(Market);

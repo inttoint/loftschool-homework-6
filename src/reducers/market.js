@@ -1,12 +1,14 @@
 import {CREATE_ORDER} from "../actions/marketTypes";
 
+export const moduleName = 'market';
+
 const initialState = {
   orders: []
 };
 
 export default (state = initialState, action) => {
   const { type, payload } = action;
-  console.log(action);
+
   switch (type) {
     case CREATE_ORDER:
       return {
@@ -18,3 +20,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export const getOrdersSelector = state => state[moduleName].orders;
