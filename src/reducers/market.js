@@ -1,5 +1,5 @@
 import { CREATE_ORDER, MOVE_ORDER_TO_FARM } from "../actions/marketTypes";
-import { sortOrderFn } from '../reducers/helpers';
+import { sortOrderFn } from './helpers';
 
 export const moduleName = 'market';
 
