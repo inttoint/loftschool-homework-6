@@ -44,7 +44,7 @@ export class Market extends Component {
         <div className="new-orders__create-form">
           <div>
             <button onClick={this.createOrderHandler}>Создать заказ</button>
-            <button>Отправить заказ на ферму</button>
+            <button disabled>Отправить заказ на ферму</button>
           </div>
           <div className="order-list">
             {
