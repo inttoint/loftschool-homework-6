@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import { createOrder } from '../../actions/marketActions';
 import { getOrdersSelector } from "../../reducers/market";
-
-import './Market.css';
 import {connect} from 'react-redux';
-import Order from "../Order/Order";
+import Order from "../Order";
+import './Market.css';
+
 let id = 0;
 const getId = () => {
   id += 1;
