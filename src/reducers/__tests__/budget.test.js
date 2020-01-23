@@ -11,7 +11,7 @@ describe('reducer budget', () => {
       type: MOVE_ORDER_TO_CUSTOMER
     });
     console.log(next);
-    expect(next.deliveryExpanse).toEqual(20);
+    expect(next.deliveryExpense).toEqual(20);
   });
 
   it('экшен с типом CREATE_ORDER увеличивает profit на action.payload.price', () => {
@@ -26,6 +26,6 @@ describe('reducer budget', () => {
     const next = budget(undefined, {
       type: MOVE_ORDER_TO_FARM
     });
-    expect(next.farmExpanse).toEqual(100);
+    expect(next.farmExpense).toEqual(100);
   });
 });
