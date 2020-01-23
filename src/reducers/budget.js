@@ -17,7 +17,7 @@ export default (state = initialState, action) => {
     case CREATE_ORDER:
       return {
         ...state,
-        profit: state.profit + payload.order.price,
+        profit: state.profit + payload.price,
         marketExpense: state.marketExpense + 20
       };
 

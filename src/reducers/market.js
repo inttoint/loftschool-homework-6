@@ -14,12 +14,12 @@ export default (state = initialState, action) => {
     case CREATE_ORDER:
       return {
         ...state,
-        orders: [...state.orders, payload.order]
+        orders: [...state.orders, payload]
       };
     case MOVE_ORDER_TO_FARM:
       return {
         ...state,
-        orders: state.orders.filter(order => order.id !== payload.order.id)
+        orders: state.orders.filter(order => order.id !== payload.id)
       };
 
     default:
